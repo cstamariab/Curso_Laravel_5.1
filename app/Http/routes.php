@@ -19,6 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 /*Al agregar el ? en el parametro nombre , queda como null*/
+
 /*Route::get('articles/{nombre?}',function($nombre){
 	echo "El nombre que has colocado es : ".$nombre;
 });*/
@@ -31,7 +32,8 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'articles'],function(){
 	/*Sirve para agregar subprefijos a las rutas */
-	Route::get('view/{article?}',function($article = "Vacio"){
-		echo $article;
-	});
+	Route::get('view/{id}',[
+		'uses' => 'TestController@view',
+		'as'   => 'articlesView'
+	]);
 });
