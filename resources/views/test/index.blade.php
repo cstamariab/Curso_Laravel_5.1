@@ -3,19 +3,23 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="{{ asset('plugin/bootstrap-4/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/general.css') }}">
 </head>
 <body>
-	Hola Christian
+	<div class="container">
+		Hola Christian
 	<br><br>
-	<h1>{{$article->title}}</h1>
+	<h1>{{ $article->title }}</h1>
 	<hr>
-	{{$article->content}}
+	{{ $article->content }}
 	<hr>
-	{{$article->user->name}} / {{$article->category->name}}
+	{{ $article->user->name }} / {{ $article->category->name }}
 
 	@foreach($article->tags as $tag)
 		{{$tag->name}}
 	@endforeach	
+                
+	</div>
 </body>
 </html>
