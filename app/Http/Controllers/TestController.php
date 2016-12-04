@@ -13,10 +13,13 @@ class TestController extends Controller
  public function view($id)
  {
     $article = Article::find($id);    
-    
+    $article->title;
     $article->category;
     $article->user;        
     $article->tags;
-    dd($article);
+
+    $datos = array('article' => $article);
+
+    return view('test.index',$datos);
  }
 }
