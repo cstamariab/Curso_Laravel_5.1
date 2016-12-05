@@ -1,7 +1,7 @@
-@extends('admin.template.main');
+@extends('admin.template.main')
+@section('title','home')
 
-@section('title')
-    Inicio de mi pagina
+@section('content')
+    <h1>Hola esto es bootstrap</h1>
+    <a href="" class="btn btn-success">Soy un boton de bootstrap</a>
 @endsection
-<h1>Hola esto es bootstrap</h1>
-<a href="" class="btn btn-success">Soy un boton de bootstrap</a>
