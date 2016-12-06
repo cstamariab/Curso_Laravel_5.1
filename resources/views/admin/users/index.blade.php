@@ -2,6 +2,7 @@
 @section('title','Lista de usuarios')
 
 @section('content')
+
 	<a href="{{ route('admin.users.create') }}" class="btn btn-info">Registrar nuevo usuario</a>
 	<hr>
 	<table class="table table-striped">
@@ -25,7 +26,11 @@
 						<span class="label label-primary">{{$user->type}}</span>
 					@endif
 				</td>
-				<td><a href="" class="btn btn-danger">Eliminar</a> / <a href="" class="btn btn-warning">Editar</a></td>				
+				<td>
+				 <a href="" class="btn btn-warning"><span class="glyphicon glyphicon-wrench"></span></a>
+
+					<a href="{{route('admin.users.destroy',$user->id)}}" onclick="return confirm('Seguro desea eliminar este usuario ?')" class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span></a> 				
+				</td>				
 			</tr>
 			@endforeach
 		</tbody>
