@@ -18,6 +18,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'admin'],function(){
+	Route::resource('users','UsersController');
+});
 /*Al agregar el ? en el parametro nombre , queda como null*/
 
 /*Route::get('articles/{nombre?}',function($nombre){
@@ -30,10 +34,10 @@ Route::get('/', function () {
 ]);*/
 
 
-Route::group(['prefix' => 'articles'],function(){
-	/*Sirve para agregar subprefijos a las rutas */
-	Route::get('view/{id}',[
-		'uses' => 'TestController@view',
-		'as'   => 'articlesView'
-	]);
-});
+// Route::group(['prefix' => 'articles'],function(){
+// 	Sirve para agregar subprefijos a las rutas 
+// 	Route::get('view/{id}',[
+// 		'uses' => 'TestController@view',
+// 		'as'   => 'articlesView'
+// 	]);
+// });
