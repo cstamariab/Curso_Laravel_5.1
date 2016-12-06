@@ -1,0 +1,11 @@
+body{
+	background-image: url("../img/ignasi_pattern_s.png");
+    background-color: #cccccc;
+}
+
+.logo_nav {
+	position: relative;
+	margin : auto 0;
+	max-height: 40px;
+	margin-right: 10px;
+}
