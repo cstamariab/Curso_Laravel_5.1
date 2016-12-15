@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\User;
+
 
 class UsersController extends Controller
 {
@@ -38,7 +40,7 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
 
         $user = new User($request->all());
@@ -67,7 +69,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+       
+        return view('admin.users.edit')->with('user',$user);
     }
 
     /**
@@ -77,9 +81,21 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        //
+        
+        $user = User::find($id);
+        // metodo de remplazo completo
+        $user->fill($request->all());
+       // $actualizacion manual de datos
+       // $user->name = $request->name;
+       // $user->email = $request->email;
+       // $user->type = $request->type;
+
+        $user->save();
+        
+        Flash('Usuario '.$user->name.' fue editado exitosamente','warning');
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -93,6 +109,6 @@ class UsersController extends Controller
         $user = User::find($id);       
         Flash('Usuario '.$user->name.' eliminado exitosamente','danger');
         $user->delete();
-        return redirect(route('admin.users.index'));
+        return redirect()->route('admin.users.index');
     }
 }
