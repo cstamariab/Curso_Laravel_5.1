@@ -16,11 +16,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+   	return view('welcome');
 });
 
-Route::group(['prefix' => 'admin'],function(){
+Route::group(['prefix' => 'admin','middleware'=>'auth'],function(){
+
+	Route::get('/',['as' => 'admin.index' , function () {
+   		return view('welcome');
+	}]);
 	Route::resource('users','UsersController');
+
 	Route::get('users/{id}/destroy',[
 	  'uses' => 'UsersController@destroy',
 	  'as' => 'admin.users.destroy'
@@ -31,8 +36,28 @@ Route::group(['prefix' => 'admin'],function(){
 		'uses' => 'CategoriesController@destroy',
 		'as' => 'admin.categories.destroy'
 	]);
-// p
+	
+	
 });
+// RUTAS PARA AUTH LOGIN ADMIN
+	Route::get('auth/login',[
+		'uses' => 'Auth\AuthController@getLogin',
+		'as' => 'auth.login'
+	]);
+	Route::post('auth/login',[
+		'uses' => 'Auth\AuthController@postLogin',
+		'as' => 'auth.login'
+	]);
+	Route::get('auth/logout',[
+		'uses' => 'Auth\AuthController@getLogout',
+		'as' => 'auth.logout'
+	]);
+
+
+
+// ---------------------
+
+
 /*Al agregar el ? en el parametro nombre , queda como null*/
 
 /*Route::get('articles/{nombre?}',function($nombre){

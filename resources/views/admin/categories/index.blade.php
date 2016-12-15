@@ -26,7 +26,9 @@
 		</tbody>
 	</table>
 	{{-- ENCARGADO DE REALIZAR LA PAGINACION DE LA TABLA --}}
-	{!! $categories->render() !!}
+	<div class="text-center">
+		{!! $categories->render() !!}
+	</div>
 	<hr>
 
 @endsection
