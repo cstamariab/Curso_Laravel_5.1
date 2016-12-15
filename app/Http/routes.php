@@ -31,7 +31,7 @@ Route::group(['prefix' => 'admin'],function(){
 		'uses' => 'CategoriesController@destroy',
 		'as' => 'admin.categories.destroy'
 	]);
-
+// p
 });
 /*Al agregar el ? en el parametro nombre , queda como null*/
 
